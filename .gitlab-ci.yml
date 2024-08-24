@@ -1,0 +1,21 @@
+image: gradle:7.3.3-jdk11
+
+stages:
+  - format
+  - lint
+  - test
+
+format:
+  stage: format
+  script:
+    - gradle spotlessApply
+
+lint:
+  stage: lint
+  script:
+    - gradle checkstyleMain
+
+test:
+  stage: test
+  script:
+    - gradle test

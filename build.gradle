@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion = '8.45.1'
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'com.diffplug.spotless' version '6.0.0'
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
